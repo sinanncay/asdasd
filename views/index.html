@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8" />
+      <title>Oyun Denemesi</title>
+      <link rel="shortcut icon" href="/assets/favicon.ico">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link rel="stylesheet" href="assets/css/main.min.css" type='text/css'/>
+      <script src="assets/js/jquery-1.11.3.min.js"></script>
+      <script src="assets/js/jquery-ui.min.js"></script>
+  </head>
+  <body>
+
+      <!-- This section is visible on the hosting device (desktop/laptop) -->
+      <section id="host" style="display:none">
+          <div class="container">
+              <a href="/">
+                <h1 class="logo">deneme | An interdevice HTML game framework</h1>
+              </a>
+
+              <div id="menu">
+                  <nav>
+                      <ul>
+					  <br><br><br>
+                          <li><a href="#" id="play"><div class="bulletHole"></div>Oyna</a></li>
+						  <li><a href="gyro.html"><div class="bulletHole"></div>Gyro Sensör</a></li>
+						  <li><a href="www/index.html"><div class="bulletHole"></div>3D</a></li>
+                         
+                      </ul>
+                  </nav>
+              </div>
+
+              <!-- This div will show the generated connection code -->
+              <div id="getCode"  style="display:none">
+                  <div class="instructions">
+                    Telefonu Yan Çevirin
+                    <div class="website">site adresi buraya gelecek</div>
+                    Kodu giriniz
+                    <div id="code">kod otomatik olarak entegre olacak</div>
+                  </div>
+              </div>
+
+              <!-- This div will show the player's score -->
+              <div id="score" style="display:none">
+                <div class="gameOver">Game Over <br/>
+                  <span id="newScore"></span>
+                </div>
+                <div id="playAgain"></div>
+              </div>
+
+          </div>
+      </section>
+
+      <!-- This section contains the canvas and is visible when the game starts -->
+      <section id="game"  style="display:none">
+      </section>
+
+      <!-- This section is visible on the mobile device -->
+      <section id="player" style="display:none">
+          <div class="rotateDevice">
+            <div class="rotate"></div>
+          </div>
+          <!-- This div shows the game code input -->
+          <div id="connect">
+            <input type="number" placeholder="Enter code" id="input"/>
+            <div id="join"></div>
+          </div>
+          <!-- This div shows the controller -->
+          <div id="controller"  style="display:none">
+            <div class="joystickPad">
+              <div id="joystick"></div>
+            </div>
+            <div id="button1"></div>
+            <div id="button2"></div>
+          </div>
+      </section>
+
+      <!-- load fastclick -->
+      <script src="assets/js/fastclick.min.js"></script>
+
+      <!-- load socket.io file -->
+      <script src="/socket.io/socket.io.js"></script>
+
+      <!-- load framework js file -->
+      <script src="assets/js/armadillo.js"></script>
+
+      <!-- load joystick file -->
+      <script src="assets/js/joystick.min.js"></script>
+
+      <!-- load controller js file -->
+      <script src="assets/js/controller.min.js"></script>
+
+      <!-- load Demo game -->
+      <script src="demo/phaser.min.js"></script>
+      <script src="demo/demo.min.js"></script>
+
+  </body>
+</html>
