@@ -1,0 +1,41 @@
+<!document html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+        <title>Instant Camera - Receiver</title>
+        <style>
+            img { float: left; margin-right: 5px; margin-bottom: 5px; }
+        </style>
+        <script>
+            var ws = new WebSocket( 'ws://' + window.location.host );
+
+            var el;
+
+            var load = function (){
+                el = document.getElementById('container');
+            };
+
+            ws.onmessage = function( obj ){
+
+                if ( typeof obj.data !== 'object' ) {
+
+                    var dataObj = JSON.parse(obj.data);
+
+                    if ( dataObj.demo.type === "device" ) {
+                        var img = document.createElement('img');
+                        img.src = dataObj.demo.image;
+                        el.appendChild(img);
+                    }
+
+                }
+
+            };
+
+            window.addEventListener('DOMContentLoaded', load, false);
+        </script>
+    </head>
+    <body>
+        <div id="container"> </div>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!document html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+        <title>Simple Chat</title>
+        <style>
+            textarea {padding:  5px 5px 5px 5px;}
+            #alive {color:#999;}
+        </style>
+
+        <script>
+            var ws = new WebSocket( 'ws://' + window.location.host );
+            ws.onmessage = function ( event ) {
+
+                if ( typeof event.data !== 'object' ) {
+                    var dataObj = JSON.parse( event.data );
+                    if ( dataObj.demo.type === "chat" ) {
+                        var recEl = document.getElementById("rec");
+                        recEl.value = dataObj.demo.message;
+                    } else if ( dataObj.demo.type === "info" ) {
+                        document.getElementById("alive").innerHTML = 'Connected';
+                    }
+                }
+            };
+
+            var send = function (ev) {
+                var chat = {"demo" : {
+                    "type"  : "chat",
+                    "message" : ev.value
+                }};
+                ws.send( JSON.stringify(chat) );
+            };
+        </script>
+    </head>
+    <body>
+        <textarea id="rec" rows="20" cols="80" onkeyup="send( this );"> </textarea>
+        <div id="alive"> </div>
+    </body>
+</html>
